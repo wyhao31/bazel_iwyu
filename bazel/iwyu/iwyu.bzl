@@ -22,7 +22,7 @@ def _is_cuda_target(srcs):
 def _run_iwyu(ctx, iwyu_executable, iwyu_mappings, iwyu_options, flags, target, infile):
     compilation_context = target[CcInfo].compilation_context
     outfile = ctx.actions.declare_file(
-        "{}.{}.iwyu.txt".format(target.label.name, infile.basename),
+        "{}.{}.iwyu.txt".format(target.label.name, "#".join(infile.short_path.split("/"))),
     )
 
     # add args specified by iwyu_options, the toolchain, on the command line and rule copts
